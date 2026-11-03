@@ -23,10 +23,13 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      
       - name: Instalar SDK Android 35
-  run: |
-    echo "y" | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
-    "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --licenses || true
+          "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0"
+          
 
       - name: Instalar Gradle
         uses: gradle/actions/setup-gradle@v4
